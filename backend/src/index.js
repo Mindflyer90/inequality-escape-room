@@ -20,7 +20,12 @@ const solutionValidator = new SolutionValidator();
 const puzzleStore = new Map();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' 
+    ? ['https://inequality-escape-room.vercel.app', 'https://*.vercel.app']
+    : '*',
+  credentials: true
+}));
 app.use(express.json());
 
 // Health check endpoint
