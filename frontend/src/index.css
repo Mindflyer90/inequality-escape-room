@@ -1,0 +1,294 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Escape Room Theme Variables */
+:root {
+  /* Primary colors */
+  --color-primary: #3b82f6;
+  --color-primary-dark: #2563eb;
+  --color-primary-light: #60a5fa;
+  
+  /* Secondary colors */
+  --color-secondary: #8b5cf6;
+  --color-secondary-dark: #7c3aed;
+  --color-secondary-light: #a78bfa;
+  
+  /* Success/Error colors */
+  --color-success: #10b981;
+  --color-success-dark: #059669;
+  --color-error: #ef4444;
+  --color-error-dark: #dc2626;
+  
+  /* Background colors */
+  --color-bg-primary: #111827;
+  --color-bg-secondary: #1f2937;
+  --color-bg-tertiary: #374151;
+  
+  /* Text colors */
+  --color-text-primary: #f9fafb;
+  --color-text-secondary: #d1d5db;
+  --color-text-muted: #9ca3af;
+  
+  /* Border colors */
+  --color-border: #4b5563;
+  --color-border-light: #6b7280;
+  
+  /* Shadow colors */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.6);
+  
+  /* Animation durations */
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  
+  /* Escape room specific */
+  --color-lock: #4b5563;
+  --color-door: #92400e;
+  --color-key: #fbbf24;
+}
+
+/* Base styles */
+@layer base {
+  body {
+    @apply bg-gray-900 text-gray-100;
+    background: linear-gradient(to bottom, #0f172a, #1e293b);
+    min-height: 100vh;
+  }
+  
+  * {
+    @apply transition-colors duration-200;
+  }
+}
+
+/* Component styles */
+@layer components {
+  /* Escape Room Scene Animations */
+  .escape-room-scene {
+    position: relative;
+    perspective: 1000px;
+  }
+  
+  /* Puzzle reveal animation */
+  @keyframes puzzleReveal {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px) scale(0.95);
+    }
+    50% {
+      opacity: 0.5;
+      transform: translateY(-10px) scale(0.98);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+  }
+  
+  .puzzle-reveal {
+    animation: puzzleReveal 0.6s ease-out;
+  }
+  
+  /* Success animation */
+  @keyframes successPulse {
+    0%, 100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.05);
+      opacity: 0.9;
+    }
+  }
+  
+  .success-pulse {
+    animation: successPulse 0.5s ease-in-out 3;
+  }
+  
+  /* Failure shake animation */
+  @keyframes failureShake {
+    0%, 100% {
+      transform: translateX(0);
+    }
+    10%, 30%, 50%, 70%, 90% {
+      transform: translateX(-5px);
+    }
+    20%, 40%, 60%, 80% {
+      transform: translateX(5px);
+    }
+  }
+  
+  .failure-shake {
+    animation: failureShake 0.5s ease-in-out;
+  }
+  
+  /* Lock unlock animation */
+  @keyframes unlockRotate {
+    0% {
+      transform: rotate(0deg);
+    }
+    25% {
+      transform: rotate(-10deg);
+    }
+    75% {
+      transform: rotate(10deg);
+    }
+    100% {
+      transform: rotate(90deg);
+    }
+  }
+  
+  .unlock-rotate {
+    animation: unlockRotate 0.8s ease-out;
+  }
+  
+  /* Glow effect */
+  @keyframes glow {
+    0%, 100% {
+      box-shadow: 0 0 5px rgba(59, 130, 246, 0.5),
+                  0 0 10px rgba(59, 130, 246, 0.3),
+                  0 0 15px rgba(59, 130, 246, 0.2);
+    }
+    50% {
+      box-shadow: 0 0 10px rgba(59, 130, 246, 0.8),
+                  0 0 20px rgba(59, 130, 246, 0.5),
+                  0 0 30px rgba(59, 130, 246, 0.3);
+    }
+  }
+  
+  .glow-effect {
+    animation: glow 2s ease-in-out infinite;
+  }
+  
+  /* Hint appear animation */
+  @keyframes hintAppear {
+    0% {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  .hint-appear {
+    animation: hintAppear 0.4s ease-out;
+  }
+  
+  /* Card hover effect */
+  .card-hover {
+    @apply transition-all duration-300;
+  }
+  
+  .card-hover:hover {
+    @apply transform -translate-y-1 shadow-xl;
+  }
+  
+  /* Button styles */
+  .btn-primary {
+    @apply px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg transition-all shadow-lg;
+  }
+  
+  .btn-primary:hover {
+    @apply transform -translate-y-0.5 shadow-xl;
+  }
+  
+  .btn-primary:active {
+    @apply transform translate-y-0;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white font-semibold rounded-lg transition-all shadow-lg;
+  }
+  
+  .btn-success {
+    @apply px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded-lg transition-all shadow-lg;
+  }
+  
+  .btn-danger {
+    @apply px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg transition-all shadow-lg;
+  }
+  
+  /* Input styles */
+  .input-primary {
+    @apply w-full px-4 py-3 bg-gray-900 border border-gray-600 rounded-lg text-white font-mono text-lg;
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent;
+    @apply transition-all duration-200;
+  }
+  
+  .input-primary:focus {
+    @apply shadow-lg;
+  }
+  
+  /* Card styles */
+  .card {
+    @apply bg-gray-800 rounded-lg p-6 border border-gray-700 shadow-lg;
+  }
+  
+  .card-dark {
+    @apply bg-gray-900 rounded-lg p-4 border border-gray-600;
+  }
+  
+  /* Modal backdrop */
+  .modal-backdrop {
+    @apply fixed inset-0 bg-black/70 backdrop-blur-sm z-40;
+  }
+  
+  /* Escape room aesthetic elements */
+  .stone-texture {
+    background-image: 
+      linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+      repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255, 255, 255, 0.03) 10px, rgba(255, 255, 255, 0.03) 20px);
+  }
+  
+  .metal-texture {
+    background: linear-gradient(135deg, #4b5563 0%, #374151 50%, #4b5563 100%);
+  }
+  
+  .wood-texture {
+    background: linear-gradient(90deg, #92400e 0%, #78350f 50%, #92400e 100%);
+  }
+}
+
+/* Utility classes */
+@layer utilities {
+  /* Text shadows for better readability */
+  .text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  }
+  
+  .text-shadow-lg {
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
+  }
+  
+  /* Backdrop blur utilities */
+  .backdrop-blur-xs {
+    backdrop-filter: blur(2px);
+  }
+  
+  /* Animation delays */
+  .delay-100 {
+    animation-delay: 100ms;
+  }
+  
+  .delay-200 {
+    animation-delay: 200ms;
+  }
+  
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+  
+  /* Perspective utilities */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+  
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+}

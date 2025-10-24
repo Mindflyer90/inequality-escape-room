@@ -1,0 +1,18 @@
+{
+  "difficulty": {
+    "easy": {
+      "minCoeff": 1,
+      "maxCoeff": 5
+    },
+    "medium": {
+      "minCoeff": 1,
+      "maxCoeff": 10
+    },
+    "hard": {
+      "minCoeff": -10,
+      "maxCoeff": 10
+    }
+  },
+  "maxHints": 3,
+  "operators": [">", "<", "≥", "≤"]
+}
