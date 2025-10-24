@@ -202,4 +202,5 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log(`Backend server running on port ${PORT}`);
   console.log(`Environment: ${process.env.NODE_ENV}`);
   console.log(`API Key configured: ${process.env.ANTHROPIC_API_KEY ? 'Yes' : 'No'}`);
+  console.log(`API Key length: ${process.env.ANTHROPIC_API_KEY?.length || 0}`);
 });
