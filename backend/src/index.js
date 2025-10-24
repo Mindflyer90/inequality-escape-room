@@ -19,11 +19,9 @@ const solutionValidator = new SolutionValidator();
 // In-memory puzzle storage (for validation)
 const puzzleStore = new Map();
 
-// Middleware
+// Middleware - Allow all origins for now
 app.use(cors({
-  origin: process.env.NODE_ENV === 'production' 
-    ? ['https://inequality-escape-room.vercel.app', 'https://*.vercel.app']
-    : '*',
+  origin: true,
   credentials: true
 }));
 app.use(express.json());
